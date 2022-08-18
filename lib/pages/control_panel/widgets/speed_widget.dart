@@ -23,7 +23,7 @@ class SpeedWidget extends StatelessWidget {
             height: 5,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _button(1, speed == 1),
               _button(2, speed == 2),
@@ -40,7 +40,7 @@ class SpeedWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
           onPrimary: isActive ? Colors.black : Colors.white,
           primary: isActive ? Colors.white : Colors.transparent,
-          minimumSize: const Size(38, 38),
+          minimumSize: const Size(38,38),
           padding: EdgeInsets.zero,
           shape: const CircleBorder(),
           side: BorderSide(color: Colors.white.withOpacity(0.4)),

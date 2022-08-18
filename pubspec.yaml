@@ -14,12 +14,17 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_svg: ^1.1.2
+  flutter_svg: ^1.1.4
   sleek_circular_slider: ^2.0.1
   rainbow_color: ^2.0.1
   animated_background: ^2.0.0
   animations: ^2.0.3
   http:
+  get:
+  get_storage:
+  argon_buttons_flutter:
+  url_launcher:
+  flutter_phone_direct_caller:
 
 
 dev_dependencies:

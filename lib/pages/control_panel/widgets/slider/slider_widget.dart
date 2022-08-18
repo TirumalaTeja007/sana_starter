@@ -85,38 +85,14 @@ class SliderWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         Text(
-                          percentage.toInt().toString(),
-                          style: const TextStyle(
+                          "00:00:00",
+                          style: TextStyle(
                               height: 0,
-                              fontSize: 45,
+                              fontSize: 28,
                               color: Colors.black,
                               fontWeight: FontWeight.w500),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            children: const [
-                              Text(
-                                "o",
-                                style: TextStyle(
-                                    height: 0,
-                                    letterSpacing: 2,
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                              Text(
-                                "C",
-                                style: TextStyle(
-                                    height: 0,
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
                         ),
                       ],
                     ),

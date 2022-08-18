@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sana_starter/controller/home_controller.dart';
-import 'package:sana_starter/model/device_model.dart';
+import 'package:sana_starter/constants/constants.dart';
+import 'package:sana_starter/controller/dynamic_controller.dart';
 import 'package:sana_starter/pages/home/widgets/devices.dart';
 import 'package:sana_starter/utils/string_to_color.dart';
 
@@ -12,29 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<DeviceModel> devices = [
-    DeviceModel(
-        name: 'SaNa Starter',
-        isActive: false,
-        color: "#7739ff",
-        icon: 'assets/svg/starter.svg'),
-    // DeviceModel(
-    //     name: 'Smart Wi-Fi',
-    //     isActive: true,
-    //     color: "#ff5f5f",
-    //     icon: 'assets/svg/wifi.svg'),
-    // DeviceModel(
-    //     name: 'Smart Spotlight',
-    //     isActive: false,
-    //     color: "#c9c306",
-    //     icon: 'assets/svg/light.svg'),
-    // DeviceModel(
-    //     name: 'Smart Fan',
-    //     isActive: false,
-    //     color: "#c207db",
-    //     icon: 'assets/svg/fan.svg'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "A total of ${devices.length} devices",
+                                    "A total of ${Constants().devices.length} device",
                                     style: const TextStyle(
                                         fontSize: 15,
                                         color: Colors.grey,
@@ -118,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                                 icon: Icon(Icons.more_horiz,
                                     color: Colors.grey[300], size: 30),
                                 onSelected: (value) async {
-                                  await HomeController().onTapClose();
+                                  await DynamicController().onTapClose();
                                 },
                                 offset: const Offset(0.0, 10),
                                 shape: RoundedRectangleBorder(
@@ -141,18 +118,25 @@ class _HomePageState extends State<HomePage> {
                                         childAspectRatio: 3 / 4,
                                         crossAxisSpacing: 20,
                                         mainAxisSpacing: 20),
-                                itemCount: devices.length,
+                                itemCount: Constants().devices.length,
                                 itemBuilder: (BuildContext ctx, index) {
                                   return Devices(
-                                    name: devices[index].name,
-                                    svg: devices[index].icon,
-                                    color: devices[index].color.toColor(),
-                                    isActive: devices[index].isActive,
+                                    name: Constants().devices[index].name,
+                                    svg: Constants().devices[index].icon,
+                                    color: Constants()
+                                        .devices[index]
+                                        .color
+                                        .toColor(),
+                                    isActive:
+                                        Constants().devices[index].isActive,
                                     onChanged: (val) async {
-                                      await HomeController().onTapConnect(val);
+                                      await DynamicController()
+                                          .onTapConnect(val);
                                       setState(() {
-                                        devices[index].isActive =
-                                            !devices[index].isActive;
+                                        Constants().devices[index].isActive =
+                                            !Constants()
+                                                .devices[index]
+                                                .isActive;
                                       });
                                     },
                                   );
@@ -173,11 +157,12 @@ class _HomePageState extends State<HomePage> {
 
   PopupMenuItem _buildPopupMenuItem(title, value) {
     return PopupMenuItem(
-        value: value,
-        child: Text(
-          title,
-          style: const TextStyle(
-              color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
-        ));
+      value: value,
+      child: Text(
+        title,
+        style: const TextStyle(
+            color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
+      ),
+    );
   }
 }
