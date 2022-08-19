@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sana_starter/constants/constants.dart';
 import 'package:sana_starter/routes/app_pages.dart';
 
@@ -21,6 +21,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     Timer.periodic(const Duration(seconds: 3), (timer) {
       timer.cancel();
       Get.offAndToNamed(Routes.home);
+
     });
   }
 
@@ -40,33 +41,33 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                 Constants().activeColor[1.0]
               ]),
         ),
-        child: AnimatedBackground(
-          behaviour: RandomParticleBehaviour(
-            options: ParticleOptions(
-              baseColor: Constants().kWhite,
-              opacityChangeRate: 0.25,
-              minOpacity: 0.1,
-              maxOpacity: 0.3,
-              spawnMinSpeed: 40.0,
-              spawnMaxSpeed: 80,
-              spawnMinRadius: 2.0,
-              spawnMaxRadius: 5.0,
-              particleCount: 150,
-            ),
-          ),
-          vsync: this,
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    'assets/svg/starter.svg',
-                    color: Constants().activeColor[0.8],
-                    height: 30,
-                  ),
-                  const SizedBox(height: 10),
+        // child: AnimatedBackground(
+        //   behaviour: RandomParticleBehaviour(
+        //     options: ParticleOptions(
+        //       baseColor: Constants().kWhite,
+        //       opacityChangeRate: 0.25,
+        //       minOpacity: 0.1,
+        //       maxOpacity: 0.3,
+        //       spawnMinSpeed: 40.0,
+        //       spawnMaxSpeed: 80,
+        //       spawnMinRadius: 2.0,
+        //       spawnMaxRadius: 5.0,
+        //       particleCount: 150,
+        //     ),
+        //   ),
+        //   vsync: this,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/svg/starter.svg',
+                  color: Constants().activeColor[0.8],
+                  height: 30,
+                ),
+                const SizedBox(height: 10),
                   Text('SaNa Starter',
                       style: TextStyle(
                           color: Constants().activeColor[0.8],
@@ -76,7 +77,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
               ),
             ),
           ),
-        ),
+        //),
       ),
     );
   }

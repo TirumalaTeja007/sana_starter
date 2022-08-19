@@ -94,9 +94,7 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.only(right: 12),
                                 icon: Icon(Icons.more_horiz,
                                     color: Colors.grey[300], size: 30),
-                                onSelected: (value) async {
-                                  await DynamicController().onTapClose();
-                                },
+                                onSelected: (value) {},
                                 offset: const Offset(0.0, 10),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8.0)),

@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sana_starter/constants/constants.dart';
 
 callExitDialog() {
   Get.defaultDialog(
-    buttonColor: Colors.black.withOpacity(0.4),
+    buttonColor: Colors.white,
     title: "Confirm Exit...!!",
     titleStyle: const TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
     content: const Padding(
@@ -15,8 +14,8 @@ callExitDialog() {
             style: TextStyle(fontSize: 14))),
     contentPadding: const EdgeInsets.all(10),
     textCancel: "No",
-    confirmTextColor: Colors.white,
-    cancelTextColor: Colors.black.withOpacity(0.4),
+    confirmTextColor: Colors.blue,
+    cancelTextColor: Colors.blue,
     textConfirm: "Yes",
     onCancel: () => Get.back(),
     onConfirm: () => exit(0),

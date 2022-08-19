@@ -22,9 +22,9 @@ dependencies:
   http:
   get:
   get_storage:
-  argon_buttons_flutter:
-  url_launcher:
   flutter_phone_direct_caller:
+  connectivity_plus:
+  intl_phone_field:
 
 
 dev_dependencies:

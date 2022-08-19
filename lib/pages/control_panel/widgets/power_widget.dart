@@ -63,9 +63,7 @@ class PowerWidget extends StatelessWidget {
                   scaleY: 0.8,
                   scaleX: 0.85,
                   child: CupertinoSwitch(
-                    onChanged: (val) async {
-                      await controller.onTapConnect(val);
-                    },
+                    onChanged: (val) => controller.onTapConnect(val),
                     value: controller.isActive.value,
                     activeColor: Colors.white.withOpacity(0.5),
                     trackColor: Colors.black.withOpacity(0.2),

@@ -2,13 +2,15 @@ import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sana_starter/constants/constants.dart';
-import 'package:sana_starter/constants/options_enum.dart';
+import 'package:sana_starter/constants/enums.dart';
 import 'package:sana_starter/controller/dynamic_controller.dart';
+import 'package:sana_starter/pages/configuration/configuration_page.dart';
 import 'package:sana_starter/pages/control_panel/widgets/option_widget.dart';
 import 'package:sana_starter/pages/control_panel/widgets/power_widget.dart';
 import 'package:sana_starter/pages/control_panel/widgets/slider/slider_widget.dart';
-import 'package:sana_starter/pages/control_panel/widgets/speed_widget.dart';
 import 'package:sana_starter/pages/control_panel/widgets/temp_widget.dart';
+import 'package:sana_starter/pages/control_panel/widgets/temp_widget1.dart';
+import 'package:sana_starter/pages/user_info/user_info.dart';
 import 'package:sana_starter/utils/slider_utils.dart';
 
 import '../dialogs/efi_exit_dialog.dart';
@@ -19,8 +21,22 @@ class ControlPanelPage extends GetView<DynamicController> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: () => callExitDialog(),
-        child: Scaffold(body: DynamicView(controller)));
+      onWillPop: () => callExitDialog(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(
+          children: [
+            DynamicView(controller),
+            Obx(
+              () => controller.openUserDialog.value == true &&
+                      !controller.user.hasData("user_name")
+                  ? UserInfoPage(controller)
+                  : const SizedBox(),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -34,9 +50,6 @@ class DynamicView extends StatefulWidget {
 
 class _DynamicViewState extends State<DynamicView>
     with TickerProviderStateMixin {
-
-  int speed = 1;
-
   double progressVal = 0.49;
 
   @override
@@ -61,11 +74,11 @@ class _DynamicViewState extends State<DynamicView>
             opacityChangeRate: 0.25,
             minOpacity: 0.1,
             maxOpacity: 0.3,
-            spawnMinSpeed: speed * 40.0,
-            spawnMaxSpeed: speed * 80,
+            spawnMinSpeed: 40.0,
+            spawnMaxSpeed: 80,
             spawnMinRadius: 2.0,
             spawnMaxRadius: 5.0,
-            particleCount: widget.controller.isActive.value ? speed * 150 : 0,
+            particleCount: widget.controller.isActive.value ? 150 : 0,
           ),
         ),
         vsync: this,
@@ -77,15 +90,18 @@ class _DynamicViewState extends State<DynamicView>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Hi,Teja",
-                      style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                  children: [
+                    SizedBox(
+                      width: Get.width * 0.7,
+                      child: Text(
+                        "Hi, ${widget.controller.user.hasData("user_name") ? widget.controller.user.read("user_name") : "User"}",
+                        style: const TextStyle(
+                            fontSize: 24,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    CircleAvatar(
+                    const CircleAvatar(
                         minRadius: 16,
                         backgroundImage: AssetImage("assets/images/user.webp"))
                   ],
@@ -125,7 +141,10 @@ class _DynamicViewState extends State<DynamicView>
           () => OptionWidget(
             icon: 'assets/svg/config.svg',
             isSelected: widget.controller.option.value == Options.configuration,
-            onTap: () => widget.controller.setOptions(Options.configuration),
+            onTap: () {
+              widget.controller.option.value = Options.configuration;
+              callConfigurationPage(widget.controller);
+            },
             size: 25,
           ),
         ),
@@ -139,9 +158,9 @@ class _DynamicViewState extends State<DynamicView>
         ),
         Obx(
           () => OptionWidget(
-            icon: 'assets/svg/hangup.svg',
-            isSelected: widget.controller.option.value == Options.hangup,
-            onTap: () => widget.controller.setOptions(Options.hangup),
+            icon: 'assets/svg/history.svg',
+            isSelected: widget.controller.option.value == Options.history,
+            onTap: () => widget.controller.setOptions(Options.history),
             size: 30,
           ),
         ),
@@ -167,15 +186,9 @@ class _DynamicViewState extends State<DynamicView>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SpeedWidget(
-                speed: speed,
-                changeSpeed: (val) => setState(() {
-                      speed = val;
-                    })),
+            Expanded(child: TempWidget1(controller: widget.controller)),
             const SizedBox(width: 15),
-            Expanded(
-              child: PowerWidget(controller: widget.controller),
-            ),
+            Expanded(child: PowerWidget(controller: widget.controller)),
           ],
         ),
         const SizedBox(height: 15),
