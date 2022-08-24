@@ -28,19 +28,10 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      backgroundColor: Constants().kWhite,
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: <Color>[
-                Colors.white,
-                Constants().activeColor[1.0].withOpacity(0.5),
-                Constants().activeColor[1.0]
-              ]),
-        ),
         // child: AnimatedBackground(
         //   behaviour: RandomParticleBehaviour(
         //     options: ParticleOptions(
@@ -64,13 +55,13 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
               children: [
                 SvgPicture.asset(
                   'assets/svg/starter.svg',
-                  color: Constants().activeColor[0.8],
+                  color: Constants().kOrange,
                   height: 30,
                 ),
                 const SizedBox(height: 10),
                   Text('SaNa Starter',
                       style: TextStyle(
-                          color: Constants().activeColor[0.8],
+                          color: Constants().kDarkBlue,
                           fontWeight: FontWeight.bold,
                           fontSize: 24))
                 ],

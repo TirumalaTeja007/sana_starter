@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sana_starter/constants/constants.dart';
 import 'package:sana_starter/controller/dynamic_controller.dart';
 import 'package:sana_starter/widgets/transparent_card.dart';
 
-class TempWidget extends StatelessWidget {
+class StarterContactInfo extends StatelessWidget {
   final DynamicController controller;
 
-  const TempWidget({Key? key, required this.controller}) : super(key: key);
+  const StarterContactInfo({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,11 @@ class TempWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("Starter contact info",
+            Text("Starter contact number",
                 style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500)),
+                    fontSize: 16,
+                    color: Constants().kDarkBlue,
+                    fontWeight: FontWeight.w700)),
             const SizedBox(height: 5),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Obx(
@@ -31,8 +33,8 @@ class TempWidget extends StatelessWidget {
                         : "Starter details are not configured ... ",
                     style: TextStyle(
                         color: controller.config.hasData("mobile_num")
-                            ? Colors.white.withOpacity(0.4)
-                            : Colors.black.withOpacity(0.3))),
+                            ? Constants().kDarkBlue
+                            : Constants().kDarkBlue.withOpacity(0.3))),
               )
             ]),
             const SizedBox(height: 12)

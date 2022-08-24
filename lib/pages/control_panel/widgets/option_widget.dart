@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sana_starter/constants/constants.dart';
 
 class OptionWidget extends StatelessWidget {
   final String icon;
@@ -7,9 +8,13 @@ class OptionWidget extends StatelessWidget {
   final GestureTapCallback onTap;
   final double size;
 
-  const OptionWidget({Key? key, required this.icon, required this.isSelected, required this.onTap, required this.size}) : super(key: key);
-
-
+  const OptionWidget(
+      {Key? key,
+      required this.icon,
+      required this.isSelected,
+      required this.onTap,
+      required this.size})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +27,12 @@ class OptionWidget extends StatelessWidget {
           borderRadius: const BorderRadius.all(
             Radius.circular(20.0),
           ),
-          color: isSelected ? Colors.white : Colors.black.withOpacity(0.1),
+          color: isSelected ? Constants().kDarkBlue : Constants().kGrey,
         ),
         child: Center(
           child: SvgPicture.asset(
             icon,
-            color: isSelected ? Colors.black : Colors.white,
+            color: isSelected ? Constants().kWhite : Constants().kDarkBlue,
             width: size,
             height: size,
           ),

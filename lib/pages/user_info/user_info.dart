@@ -4,8 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:sana_starter/constants/constants.dart';
 import 'package:sana_starter/controller/dynamic_controller.dart';
 
-import '../control_panel/control_panel_page.dart';
-
 class UserInfoPage extends StatelessWidget {
   final DynamicController controller;
 
@@ -39,16 +37,17 @@ class UserInfoPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text("Tell us about you..",
+                      Text("Tell us about you..",
                           style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 18)),
+                              fontWeight: FontWeight.w700,
+                              color: Constants().kDarkBlue,
+                              fontSize: 18)),
                       const SizedBox(height: 20),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(Icons.account_box,
-                              color: Constants().activeColor[1.0]),
+                          Icon(Icons.account_box, color: Constants().kOrange),
                           SizedBox(
                             width: Get.width * 0.6,
                             child: TextFormField(
@@ -58,8 +57,8 @@ class UserInfoPage extends StatelessWidget {
                               textAlign: TextAlign.start,
                               textAlignVertical: TextAlignVertical.center,
                               obscureText: false,
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 18),
+                              style: TextStyle(
+                                  color: Constants().kDarkBlue, fontSize: 18),
                               decoration: InputDecoration(
                                   counterText: "",
                                   contentPadding: const EdgeInsets.all(15),
@@ -91,7 +90,9 @@ class UserInfoPage extends StatelessWidget {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                              primary: Constants().activeColor[1.0]),
+                              primary: Constants().kDarkBlue,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0))),
                           child: const Text("Save",
                               style: TextStyle(
                                   color: Colors.white,

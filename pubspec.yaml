@@ -25,6 +25,8 @@ dependencies:
   flutter_phone_direct_caller:
   connectivity_plus:
   intl_phone_field:
+  persistent_bottom_nav_bar:
+  material_design_icons_flutter:
 
 
 dev_dependencies:

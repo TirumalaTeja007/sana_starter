@@ -28,6 +28,8 @@ class DynamicController extends GetxController {
 
   RxBool openUserDialog = true.obs;
 
+  RxInt bottomNavBarIndex = 0.obs;
+
   DynamicController() {
     networkService();
   }
@@ -75,6 +77,8 @@ class DynamicController extends GetxController {
 
     String url = val == true ? onUrl : offUrl;
 
+    print(url);
+
     try {
       final response = await http
           .post(Uri.parse(url))
@@ -98,8 +102,6 @@ class DynamicController extends GetxController {
   }
 
   callNumber() async {
-    config.write("mobile_num", "7993596198");
-
     if (config.hasData("mobile_num")) {
       bool? res =
           await FlutterPhoneDirectCaller.callNumber(config.read("mobile_num"));

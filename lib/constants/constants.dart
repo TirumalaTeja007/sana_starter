@@ -20,4 +20,7 @@ class Constants {
   ], rangeStart: 0.0, rangeEnd: 1.0);
 
   Color kWhite = const Color(0xFFFFFFFF);
+  Color kGrey = const Color(0xFFf4f4f7);
+  Color kDarkBlue = const Color(0xFF2c2f42);
+  Color kOrange = const Color(0xFFFebb53);
 }

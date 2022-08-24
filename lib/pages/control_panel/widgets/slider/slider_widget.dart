@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sana_starter/constants/constants.dart';
 import 'package:sana_starter/pages/control_panel/widgets/slider/custom_arc.dart';
 import 'package:sana_starter/utils/slider_utils.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
@@ -27,7 +28,7 @@ class SliderWidget extends StatelessWidget {
             width: kDiameter + 35,
             height: kDiameter + 35,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Constants().kGrey,
               shape: BoxShape.circle,
             ),
           ),
@@ -85,13 +86,13 @@ class SliderWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "00:00:00",
                           style: TextStyle(
                               height: 0,
                               fontSize: 28,
-                              color: Colors.black,
+                              color: Constants().kDarkBlue,
                               fontWeight: FontWeight.w500),
                         ),
                       ],

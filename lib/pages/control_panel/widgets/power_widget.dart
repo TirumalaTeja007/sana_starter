@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:sana_starter/controller/dynamic_controller.dart';
 import 'package:sana_starter/widgets/transparent_card.dart';
 
+import '../../../constants/constants.dart';
+
 class PowerWidget extends StatelessWidget {
   final DynamicController controller;
 
@@ -18,11 +20,11 @@ class PowerWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Text("Power",
+                Text("Power",
                     style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500)),
+                        fontSize: 16,
+                        color: Constants().kDarkBlue,
+                        fontWeight: FontWeight.w700)),
                 controller.startLoading.value == true
                     ? const CupertinoActivityIndicator()
                     : const SizedBox(),
@@ -33,30 +35,22 @@ class PowerWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                RichText(
-                  text: TextSpan(
-                      text: 'OFF',
-                      style: TextStyle(
-                          fontFamily: "Poppins",
-                          fontSize: 14,
-                          color: !controller.isActive.value
-                              ? Colors.white
-                              : Colors.black.withOpacity(0.3),
-                          fontWeight: FontWeight.w500),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: '/',
-                            style: TextStyle(
-                                color: Colors.black.withOpacity(0.3))),
-                        TextSpan(
-                          text: 'ON',
-                          style: TextStyle(
+                Row(
+                  children: [
+                    Text('Off',
+                        style: TextStyle(
+                            color: !controller.isActive.value
+                                ? Constants().kDarkBlue
+                                : Constants().kDarkBlue.withOpacity(0.3))),
+                    Text('/',
+                        style: TextStyle(
+                            color: Constants().kDarkBlue.withOpacity(0.3))),
+                    Text('On',
+                        style: TextStyle(
                             color: controller.isActive.value
-                                ? Colors.white
-                                : Colors.black.withOpacity(0.3),
-                          ),
-                        ),
-                      ]),
+                                ? Constants().kDarkBlue
+                                : Constants().kDarkBlue.withOpacity(0.3))),
+                  ],
                 ),
                 Transform.scale(
                   alignment: Alignment.center,
@@ -65,8 +59,8 @@ class PowerWidget extends StatelessWidget {
                   child: CupertinoSwitch(
                     onChanged: (val) => controller.onTapConnect(val),
                     value: controller.isActive.value,
-                    activeColor: Colors.white.withOpacity(0.5),
-                    trackColor: Colors.black.withOpacity(0.2),
+                    activeColor: Constants().kDarkBlue,
+                    trackColor: Colors.black.withOpacity(0.4),
                   ),
                 ),
               ],

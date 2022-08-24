@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sana_starter/constants/constants.dart';
 
 class TransparentCard extends StatelessWidget {
   final Widget child;
@@ -11,7 +12,7 @@ class TransparentCard extends StatelessWidget {
       height: 100,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-        color: Colors.black.withOpacity(0.2),
+        color: Constants().kGrey,
       ),
       child: Padding(padding: const EdgeInsets.all(10.0), child: child),
     );
